@@ -32,8 +32,8 @@ class UserKNN(Lazy):
 			np.save(filename, file_content)
 
 		#self.user_item = ssp.coo_matrix((file_content[:,2], (file_content[:,0], file_content[:,1]))).tocsr()
-		self.binary_user_item = ssp.coo_matrix((np.ones(file_content.shape[0]), (file_content[:,0], file_content[:,1]))).tocsr()
-
+		self.binary_user_item = ssp.coo_matrix((np.ones(file_content.shape[0]), (file_content[:,0].astype(int), file_content[:,1].astype(int)))).tocsr()
+		# fixed TypeError: 'numpy.float64' object cannot be interpreted as an index 
 		del file_content
 
 		self.n_items = self.binary_user_item.shape[1]
