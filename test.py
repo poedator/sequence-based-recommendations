@@ -88,7 +88,7 @@ def print_results(ev, metrics, plot=True, file=None, n_batches=None, print_full_
 		if not os.path.exists(os.path.dirname(file)):
 			os.makedirs(os.path.dirname(file))
 		with open(file, "a") as f:
-			f.write(str(n_batches)+"\t".join(map(str, [ev.metrics[m]() for m in metrics])) + "\n")
+			f.write(str(n_batches)+"\t"+"\t".join(map(str, [ev.metrics[m]() for m in metrics])) + "\n")
 		if print_full_rank_comparison:
 			with open(file+"_full_rank", "a") as f:
 				for data in ev.get_rank_comparison():
